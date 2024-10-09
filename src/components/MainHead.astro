@@ -10,6 +10,8 @@ const {
 	title = 'Didik Tri Susanto Website',
 	description = 'Welcome to my personal site. I am a professional product engineer specialized in backend engineering with 10 years of experience.',
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
 ---
 
 <meta charset="UTF-8" />
@@ -17,7 +19,7 @@ const {
 <meta property="og:title" content={title}>
 <meta property="og:site_name" content={title}>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://didiktrisusanto.dev">
+<meta property="og:url" content={canonicalUrl}>
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
@@ -25,7 +27,7 @@ const {
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="canonical" href="https://didiktrisusanto.dev" />
+<link rel="canonical" href={canonicalUrl} />
 <link
 	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
 	rel="stylesheet"
