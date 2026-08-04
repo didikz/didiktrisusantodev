@@ -1,15 +1,31 @@
-# Hello
+# didiktrisusanto.dev
 
-This is my personal website built with [Astro](https://astro.build/)
+Personal portfolio of Didik Tri Susanto — backend-focused product engineer. Plain [Astro](https://astro.build/) 7, static HTML, vanilla CSS (Warm ink). Live at [didiktrisusanto.dev](https://didiktrisusanto.dev).
 
 ## Requirements
 
-+ Node.js version >=16.12.0
-+ NPM version min 9.8.1
+- Node.js `>=22.12.0` (see `.nvmrc`)
+- npm 9+
 
-## Installation
+## Setup
 
-+ Clone the repo
-+ run `npm install` to install dependencies
-+ run `npm run dev` to run the site locally
-+ visit `http://localhost:3000` to see the site
+```bash
+npm install
+npm run dev
+```
+
+Open the URL Astro prints (default `http://localhost:4321`).
+
+## Scripts
+
+| Command | What it does |
+|---------|----------------|
+| `npm run dev` | Local dev server |
+| `npm run build` | Static site → `dist/` |
+| `npm run preview` | Preview the production build |
+
+## Stack
+
+- Astro 7 (static output, no UI framework)
+- `@astrojs/sitemap`
+- Deployed via Cloudflare Pages
