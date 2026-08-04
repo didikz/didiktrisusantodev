@@ -67,15 +67,12 @@ const skills: { label: string; icon: keyof typeof iconPaths }[] = [
 		transition:
 			border-color var(--theme-transition),
 			background-color var(--theme-transition);
+		animation: rise 0.4s ease both;
+		animation-delay: calc(var(--i) * 40ms);
 	}
 
 	.chip:hover {
 		border-color: var(--accent-regular);
-	}
-
-	.chip {
-		animation: rise 0.4s ease both;
-		animation-delay: calc(var(--i) * 40ms);
 	}
 
 	@keyframes rise {
