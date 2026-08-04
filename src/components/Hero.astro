@@ -3,14 +3,30 @@ interface Props {
 	title: string;
 	tagline?: string;
 	align?: 'start' | 'center';
+	inkStroke?: boolean;
 }
 
-const { align = 'center', tagline, title } = Astro.props;
+const { align = 'center', tagline, title, inkStroke = false } = Astro.props;
 ---
 
 <header class:list={['hero stack gap-4', align]}>
 	<div class="stack gap-2">
-		<h1 class="title">{title}</h1>
+		<div class="title-block">
+			<h1 class="title">{title}</h1>
+			{
+				inkStroke && (
+					<svg class="ink-stroke" viewBox="0 0 200 12" aria-hidden="true">
+						<path
+							d="M2 8 C40 2, 80 10, 120 6 S180 3, 198 7"
+							fill="none"
+							stroke="var(--accent-regular)"
+							stroke-width="3"
+							stroke-linecap="round"
+						/>
+					</svg>
+				)
+			}
+		</div>
 		{tagline && <p class="tagline">{tagline}</p>}
 	</div>
 	<slot />
@@ -29,8 +45,30 @@ const { align = 'center', tagline, title } = Astro.props;
 	}
 
 	.title {
+		font-family: var(--font-brand);
 		font-size: var(--text-3xl);
+		font-weight: 600;
 		color: var(--gray-0);
+		letter-spacing: -0.02em;
+	}
+
+	.tagline {
+		color: var(--gray-200);
+		max-width: 42ch;
+	}
+
+	.title-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.ink-stroke {
+		display: block;
+		width: min(12rem, 50%);
+		height: auto;
+		margin-top: -0.15rem;
+		margin-bottom: 0.25rem;
 	}
 
 	@media (min-width: 50em) {
@@ -47,8 +85,8 @@ const { align = 'center', tagline, title } = Astro.props;
 			margin-inline: unset;
 		}
 
-		.title {
-			font-size: var(--text-5xl);
+		.start .title-block {
+			align-items: flex-start;
 		}
 	}
 </style>
