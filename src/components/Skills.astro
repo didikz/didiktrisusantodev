@@ -72,4 +72,26 @@ const skills: { label: string; icon: keyof typeof iconPaths }[] = [
 	.chip:hover {
 		border-color: var(--accent-regular);
 	}
+
+	.chip {
+		animation: rise 0.4s ease both;
+		animation-delay: calc(var(--i) * 40ms);
+	}
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(0.4rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.chip {
+			animation: none;
+		}
+	}
 </style>

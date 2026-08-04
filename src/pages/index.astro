@@ -82,6 +82,47 @@ import ContactCTA from '../components/ContactCTA.astro';
 		margin-top: 1.25rem;
 	}
 
+	.portrait,
+	.hero-copy :global(.title),
+	.hero-copy :global(.tagline),
+	.hero-actions,
+	.hero-copy :global(.ink-stroke) {
+		animation: rise 0.55s ease both;
+	}
+
+	.hero-copy :global(.tagline) {
+		animation-delay: 0.08s;
+	}
+
+	.hero-copy :global(.ink-stroke) {
+		animation-delay: 0.12s;
+	}
+
+	.hero-actions {
+		animation-delay: 0.18s;
+	}
+
+	@keyframes rise {
+		from {
+			opacity: 0;
+			transform: translateY(0.6rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.portrait,
+		.hero-copy :global(.title),
+		.hero-copy :global(.tagline),
+		.hero-actions,
+		.hero-copy :global(.ink-stroke) {
+			animation: none;
+		}
+	}
+
 	@media (min-width: 50em) {
 		.page {
 			padding-block: 4.5rem 5rem;
