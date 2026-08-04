@@ -14,13 +14,14 @@ const { href } = Astro.props;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		gap: 0.6em;
-		padding: 0.75em 1.35em;
+		gap: 0.45em;
+		padding: 0.5em 1em;
+		font-size: var(--text-sm);
 		color: var(--accent-text-over);
 		text-decoration: none;
-		line-height: 1.1;
+		line-height: 1.2;
 		font-weight: 600;
-		border-radius: 0.6rem;
+		border-radius: 0.45rem;
 		background: var(--accent-regular);
 		border: 1px solid var(--accent-regular);
 		transition:
@@ -42,8 +43,8 @@ const { href } = Astro.props;
 
 	@media (min-width: 50em) {
 		a {
-			padding: 0.85em 1.6em;
-			font-size: var(--text-lg);
+			padding: 0.55em 1.1em;
+			font-size: var(--text-base);
 		}
 	}
 </style>

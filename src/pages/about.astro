@@ -1,105 +1,216 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
+import ContactCTA from '../components/ContactCTA.astro';
 ---
 
-<BaseLayout title="About | Didik Tri Susanto" description="About Didik Tri Susanto profile">
-	<div class="stack gap-20">
-		<main class="wrapper about">
-			<Hero
-				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
-			>
-				<img
-					width="1553"
-					height="873"
-					src="/assets/selfprotrait.webp"
-					alt="Didik Tri Susanto at beach"
-				/>
-			</Hero>
+<BaseLayout
+	title="About | Didik Tri Susanto"
+	description="About Didik Tri Susanto: backend product engineer from Malang, Indonesia. Education, community, mentoring, and what drives the work."
+>
+	<main class="page">
+		<Hero
+			title="About"
+			tagline="I care about systems people can rely on, and teams that get better over time."
+			align="start"
+		/>
 
-			<section>
-				<h2 class="section-title">Background</h2>
-				<div class="content">
+		<div class="bio-row">
+			<img
+				class="portrait"
+				src="/assets/about-portrait.webp"
+				alt="Didik Tri Susanto"
+				width="320"
+				height="480"
+				loading="eager"
+			/>
+
+			<section class="bio" aria-labelledby="bio-heading">
+				<h2 class="label" id="bio-heading">Bio</h2>
+				<div class="prose">
 					<p>
-						Hi, Lol
+						I'm a product engineer focused on backend systems, based in Malang, Indonesia. Over 13
+						years (including 6 years remote) I've shipped and led work across social commerce,
+						education, fintech, AI integration, and information systems.
+					</p>
+					<p>
+						I like owning the loop when it makes sense: clarify the problem, design the system, ship,
+						measure, and maintain. I've done that as an IC, a tech lead, and as VP of Engineering.
+					</p>
+					<p>
+						Right now I'm open to backend and product engineering roles, especially remote-friendly
+						ones where reliability and clear product thinking matter.
 					</p>
 				</div>
 			</section>
-			<section>
-				<h2 class="section-title">Education</h2>
-				<div class="content">
-					<p>Bachelor of Informatics Engineering, UIN Maulana Malik Ibrahim Malang</p>
-				</div>
-			</section>
-			<section>
-				<h2 class="section-title">Skills</h2>
-				<div class="content">
-					<p>random</p>
-				</div>
-			</section>
-		</main>
+		</div>
+
+		<section class="block" aria-labelledby="education-heading">
+			<h2 class="label" id="education-heading">Education</h2>
+			<p class="line">
+				Computer Science, UIN Maulana Malik Ibrahim Malang
+				<span class="muted">2007 – 2012</span>
+			</p>
+		</section>
+
+		<section class="block" aria-labelledby="community-heading">
+			<h2 class="label" id="community-heading">Community</h2>
+			<ul class="list">
+				<li>Crew and organizer, Malang Backend Community</li>
+				<li>Crew and organizer, Malang PHP Community</li>
+				<li>Crew and advisor, Malang QA Community</li>
+			</ul>
+		</section>
+
+		<section class="block" aria-labelledby="teaching-heading">
+			<h2 class="label" id="teaching-heading">Speaking & mentoring</h2>
+			<ul class="list">
+				<li>
+					Technical mentor at Dibimbing.id (2024–2025), including bank internship cohorts and coding
+					assessments for IT recruitment
+				</li>
+				<li>Teaching software architecture & system design at Nortis Academy Malang (2025)</li>
+				<li>
+					Talks and community sessions on software engineering (
+					<a href="https://speakerdeck.com/didikz/">Speaker Deck</a>)
+				</li>
+				<li>Past mentoring with Gerakan 1000 Startup Digital, Startup Weekend, and Bekup Bekraf</li>
+				<li>One semester teaching web development at Brawijaya University Vocational Program (2019)</li>
+			</ul>
+		</section>
+
+		<section class="block" aria-labelledby="interests-heading">
+			<h2 class="label" id="interests-heading">Elsewhere in life</h2>
+			<p class="prose">
+				I share a home with a lot of cats. I played guitar (and sometimes drums) in school and
+				college bands, still drawn to rock and jazz. On quieter days I ride: endurance and climbs.
+			</p>
+		</section>
 
 		<ContactCTA />
-	</div>
+	</main>
 </BaseLayout>
 
 <style>
-	.about {
+	.page {
+		width: min(100% - 2rem, 42rem);
+		margin-inline: auto;
+		padding-block: 1rem 4rem;
 		display: flex;
 		flex-direction: column;
-		gap: 3.5rem;
+		gap: 2.5rem;
 	}
 
-	img {
-		margin-top: 1.5rem;
-		border-radius: 1.5rem;
-		box-shadow: var(--shadow-md);
-	}
-
-	section {
+	.bio-row {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--gray-700);
+	}
+
+	.portrait {
+		width: min(100%, 14rem);
+		height: auto;
+		aspect-ratio: 2 / 3;
+		object-fit: cover;
+		object-position: top center;
+		border-radius: 0.5rem;
+		border: 1px solid var(--gray-700);
+	}
+
+	.bio {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+		min-width: 0;
+	}
+
+	.block {
+		display: flex;
+		flex-direction: column;
+		gap: 0.85rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--gray-700);
+	}
+
+	.label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-300);
+		margin: 0;
+	}
+
+	.prose {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 		color: var(--gray-200);
+		max-width: 52ch;
 	}
 
-	.section-title {
-		grid-column-start: 1;
-		font-size: var(--text-xl);
-		color: var(--gray-0);
+	.prose p {
+		margin: 0;
 	}
 
-	.content {
-		grid-column: 2 / 4;
-	}
-
-	.content :global(a) {
-		text-decoration: 1px solid underline transparent;
-		text-underline-offset: 0.25em;
+	.prose a,
+	.list a {
+		color: var(--accent-regular);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.2em;
 		transition: text-decoration-color var(--theme-transition);
 	}
 
-	.content :global(a:hover),
-	.content :global(a:focus) {
+	.prose a:hover,
+	.list a:hover {
 		text-decoration-color: currentColor;
 	}
 
+	.line {
+		margin: 0;
+		color: var(--gray-0);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+		align-items: baseline;
+		justify-content: space-between;
+	}
+
+	.muted {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+	}
+
+	.list {
+		margin: 0;
+		padding-left: 1.15rem;
+		color: var(--gray-200);
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+		max-width: 54ch;
+	}
+
 	@media (min-width: 50em) {
-		.about {
-			display: grid;
-			grid-template-columns: 1fr 60% 1fr;
+		.page {
+			padding-block: 1.5rem 5rem;
+			gap: 3rem;
 		}
 
-		.about > :global(:first-child) {
-			grid-column-start: 2;
+		.bio-row {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 2rem;
 		}
 
-		section {
-			display: contents;
-			font-size: var(--text-lg);
+		.portrait {
+			width: 12.5rem;
+			flex-shrink: 0;
 		}
 	}
 </style>

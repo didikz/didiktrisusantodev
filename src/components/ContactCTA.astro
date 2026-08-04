@@ -6,11 +6,11 @@ import Icon from './Icon.astro';
 <aside class="contact">
 	<div class="copy">
 		<p class="label">Get in touch</p>
-		<h2>Have a role or problem that needs a steady backend hand?</h2>
+		<h2>Available for new projects — let's talk!</h2>
 	</div>
 	<CallToAction href="mailto:didiktrisusanto@gmail.com">
 		Email me
-		<Icon icon="paper-plane-tilt" size="1.2em" />
+		<Icon icon="paper-plane-tilt" size="1em" />
 	</CallToAction>
 </aside>
 
@@ -28,19 +28,24 @@ import Icon from './Icon.astro';
 	}
 
 	.label {
+		font-family: var(--font-brand);
 		font-size: var(--text-sm);
-		font-weight: 600;
-		letter-spacing: 0.12em;
+		font-weight: 500;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--gray-300);
 		margin-bottom: 0.5rem;
 	}
 
 	h2 {
-		font-size: var(--text-xl);
+		font-size: var(--text-md);
 		font-weight: 600;
 		color: var(--gray-0);
-		max-width: 28ch;
+	}
+
+	.copy {
+		min-width: 0;
+		flex: 1;
 	}
 
 	@media (min-width: 50em) {
@@ -49,10 +54,11 @@ import Icon from './Icon.astro';
 			align-items: center;
 			justify-content: space-between;
 			padding: 4rem 0 1rem;
+			gap: 1.5rem;
 		}
 
 		h2 {
-			font-size: var(--text-2xl);
+			font-size: var(--text-lg);
 		}
 	}
 </style>

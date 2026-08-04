@@ -4,12 +4,16 @@ import CallToAction from '../components/CallToAction.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import Skills from '../components/Skills.astro';
+import Selected from '../components/Selected.astro';
 import ContactCTA from '../components/ContactCTA.astro';
 ---
 
-<BaseLayout>
+<BaseLayout
+	title="Didik Tri Susanto | Backend Product Engineer"
+	description="Product engineer specialized in backend engineering with 13 years of experience, including 6 years remote, building usable, scalable technology across fintech, social commerce, education, and AI."
+>
 	<main class="page">
-		<header class="hero-block">
+		<div class="hero-block">
 			<img
 				class="portrait"
 				alt="Didik Tri Susanto"
@@ -22,20 +26,22 @@ import ContactCTA from '../components/ContactCTA.astro';
 			<div class="hero-copy">
 				<Hero
 					title="Didik Tri Susanto"
-					tagline="Product engineer focused on backend systems — about 10 years building reliable APIs and services from Malang, Indonesia."
+					tagline="Backend-focused product engineer with 13 years of experience, including 6 years remote. I build usable, scalable systems across fintech, social commerce, education, and AI."
 					align="start"
 					inkStroke
 				/>
 				<div class="hero-actions">
 					<CallToAction href="mailto:didiktrisusanto@gmail.com">
 						Email me
-						<Icon icon="paper-plane-tilt" size="1.15em" />
+						<Icon icon="paper-plane-tilt" size="1em" />
 					</CallToAction>
 				</div>
 			</div>
-		</header>
+		</div>
 
 		<Skills />
+
+		<Selected />
 
 		<ContactCTA />
 	</main>
@@ -45,7 +51,7 @@ import ContactCTA from '../components/ContactCTA.astro';
 	.page {
 		width: min(100% - 2rem, 42rem);
 		margin-inline: auto;
-		padding-block: 3rem 4rem;
+		padding-block: 1rem 4rem;
 		display: flex;
 		flex-direction: column;
 		gap: 3.5rem;
@@ -75,6 +81,10 @@ import ContactCTA from '../components/ContactCTA.astro';
 
 	.hero-actions {
 		margin-top: 1.25rem;
+	}
+
+	.hero-actions :global(a) {
+		width: 100%;
 	}
 
 	.portrait,
@@ -120,8 +130,12 @@ import ContactCTA from '../components/ContactCTA.astro';
 
 	@media (min-width: 50em) {
 		.page {
-			padding-block: 4.5rem 5rem;
+			padding-block: 1.5rem 5rem;
 			gap: 4.5rem;
+		}
+
+		.hero-actions :global(a) {
+			width: auto;
 		}
 	}
 </style>
