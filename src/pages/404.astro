@@ -8,5 +8,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 	description="This page could not be found."
 	noindex
 >
-	<Hero title="Page Not Found" tagline="Not found" />
+	<main class="page">
+		<Hero title="Page Not Found" tagline="Not found" />
+	</main>
 </BaseLayout>
+
+<style>
+	.page {
+		width: min(100% - 2rem, 42rem);
+		margin-inline: auto;
+		padding-block: 2rem 4rem;
+	}
+</style>
