@@ -1,0 +1,20 @@
+# Didik Tri Susanto
+
+> Backend-focused product engineer with 13 years of experience, including 6 years remote. Builds usable, scalable systems across fintech, social commerce, education, and AI. Based in Malang, Indonesia. Open to backend and product engineering roles, remote-friendly.
+
+## Pages
+
+- [Home](https://didiktrisusanto.dev/): Profile, stack, highlights, and contact
+- [Experience](https://didiktrisusanto.dev/experience/): Career history and role highlights
+- [About](https://didiktrisusanto.dev/about/): Bio, education, community, mentoring, and interests
+
+## Elsewhere
+
+- [Blog](https://blog.didiktrisusanto.dev/): Writing on software development and career
+- [GitHub](https://github.com/didikz): Code and open activity
+- [LinkedIn](https://www.linkedin.com/in/didik-tri-susanto-16029443/): Professional profile
+- [Speaker Deck](https://speakerdeck.com/didikz/): Talk slides on software engineering
+
+## Optional
+
+- [Twitter / X](https://twitter.com/didikz): Updates and notes

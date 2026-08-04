@@ -7,6 +7,7 @@ import type { iconPaths } from './IconPaths';
 const textLinks: { label: string; href: string }[] = [
 	{ label: 'Home', href: '/' },
 	{ label: 'Experience', href: '/experience/' },
+	{ label: 'About', href: '/about/' },
 	{ label: 'Blog', href: 'https://blog.didiktrisusanto.dev/' },
 ];
 
@@ -23,7 +24,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 <nav>
 	<div class="menu-header">
 		<a href="/" class="site-title">
-			<Icon icon="terminal-window" color="var(--accent-regular)" size="1.6em" gradient />
 			Didik Tri Susanto
 		</a>
 		<menu-button>
@@ -147,7 +147,7 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		position: relative;
 		font-family: var(--font-brand);
 		font-weight: 500;
-		margin-bottom: 3.5rem;
+		margin-bottom: 1rem;
 	}
 
 	.menu-header {
@@ -158,9 +158,6 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 	}
 
 	.site-title {
-		display: flex;
-		gap: 0.5rem;
-		align-items: center;
 		line-height: 1.1;
 		color: var(--gray-0);
 		text-decoration: none;
@@ -250,13 +247,13 @@ const iconLinks: { label: string; href: string; icon: keyof typeof iconPaths }[]
 		display: flex;
 		padding: var(--icon-padding);
 		text-decoration: none;
-		color: var(--accent-dark);
+		color: var(--accent-regular);
 		transition: color var(--theme-transition);
 	}
 
 	.social:hover,
-	.social:focus {
-		color: var(--accent-text-over);
+	.social:focus-visible {
+		color: var(--gray-0);
 	}
 
 	.theme-toggle {

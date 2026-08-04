@@ -3,6 +3,20 @@ import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
+<BaseLayout
+	title="Page Not Found | Didik Tri Susanto"
+	description="This page could not be found."
+	noindex
+>
+	<main class="page">
+		<Hero title="Page Not Found" tagline="Not found" />
+	</main>
 </BaseLayout>
+
+<style>
+	.page {
+		width: min(100% - 2rem, 42rem);
+		margin-inline: auto;
+		padding-block: 2rem 4rem;
+	}
+</style>

@@ -4,41 +4,65 @@ import '../styles/global.css';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	image?: string | undefined;
+	noindex?: boolean;
 }
 
+const siteName = 'Didik Tri Susanto';
+const defaultTitle = 'Didik Tri Susanto | Backend Product Engineer';
+const defaultDescription =
+	'Product engineer specialized in backend engineering with 13 years of experience, including 6 years remote, building usable, scalable technology.';
+
 const {
-	title = 'Didik Tri Susanto Website',
-	description = 'Welcome to my personal site. I am a professional product engineer specialized in backend engineering with 10 years of experience.',
+	title = defaultTitle,
+	description = defaultDescription,
+	image = '/assets/og-image.jpg',
+	noindex = false,
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const imageUrl = new URL(image, Astro.site);
 ---
 
 <meta charset="UTF-8" />
-<meta name="description" property="og:description" content={description} />
-<meta property="og:title" content={title}>
-<meta property="og:site_name" content={title}>
-<meta property="og:type" content="website">
-<meta property="og:url" content={canonicalUrl}>
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 
+<title>{title}</title>
+<link rel="canonical" href={canonicalUrl} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content="Didik Tri Susanto, backend product engineer" />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:site" content="@didikz" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="canonical" href={canonicalUrl} />
 <link
-	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+	href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
 	rel="stylesheet"
 />
+
 <script is:inline>
 	// This code is inlined in the head to make dark mode instant & blocking.
 	const getThemePreference = () => {
 		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
 			return localStorage.getItem('theme');
 		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+		return 'light';
 	};
 	const isDark = getThemePreference() === 'dark';
 	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');

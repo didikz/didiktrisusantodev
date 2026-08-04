@@ -1,0 +1,111 @@
+---
+const selected = [
+	{
+		eyebrow: 'Omcom · 2025–2026',
+		title: 'End-to-end platform ownership',
+		body: 'Solo product engineer for a Singapore social-commerce platform serving 200+ stores, with 99.956% uptime. Revamped the merchant web app from scratch and launched in about two months.',
+		href: '/experience/',
+	},
+	{
+		eyebrow: 'Flip · 2022–2024',
+		title: 'Disbursement reliability at scale',
+		body: 'Raised created–confirmed API SLA (p95 under 5s) from under 60% to over 95%, and cut p95 latency from over 5s to under 1s while serving 200k+ daily requests.',
+		href: '/experience/',
+	},
+	{
+		eyebrow: 'Mentoring · 2024–2025',
+		title: 'Growing the next engineers',
+		body: 'Mentored 20+ interns toward junior roles at Dibimbing.id, crafted coding assessments for bank IT hiring, and taught system design at Nortis Academy Malang.',
+		href: '/about/',
+	},
+];
+---
+
+<section class="selected" aria-labelledby="highlights-heading">
+	<p class="label" id="highlights-heading">Highlights</p>
+	<ul class="items">
+		{
+			selected.map((item) => (
+				<li class="item">
+					<p class="eyebrow">{item.eyebrow}</p>
+					<h2 class="title">
+						<a href={item.href}>{item.title}</a>
+					</h2>
+					<p class="body">{item.body}</p>
+				</li>
+			))
+		}
+	</ul>
+</section>
+
+<style>
+	.selected {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.label {
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--gray-300);
+		margin: 0;
+	}
+
+	.items {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.item {
+		padding-block: 1.35rem;
+		border-top: 1px solid var(--gray-700);
+	}
+
+	.item:last-child {
+		border-bottom: 1px solid var(--gray-700);
+	}
+
+	.eyebrow {
+		margin: 0 0 0.35rem;
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+	}
+
+	.title {
+		margin: 0 0 0.4rem;
+		font-size: var(--text-lg);
+		font-weight: 600;
+		color: var(--gray-0);
+	}
+
+	.title a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.title a:hover,
+	.title a:focus-visible {
+		color: var(--accent-regular);
+	}
+
+	.body {
+		margin: 0;
+		color: var(--gray-200);
+		max-width: 52ch;
+		font-size: var(--text-base);
+	}
+
+	@media (min-width: 50em) {
+		.title {
+			font-size: var(--text-xl);
+		}
+	}
+</style>

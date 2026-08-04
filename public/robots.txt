@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /work/
+
+Sitemap: https://didiktrisusanto.dev/sitemap-index.xml
+# Curated index for AI assistants: https://didiktrisusanto.dev/llms.txt
