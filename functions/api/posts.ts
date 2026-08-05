@@ -8,6 +8,7 @@ type Post = {
 	link: string;
 	pubDate: string;
 	description: string;
+	image: string | null;
 };
 
 function decodeXml(text: string): string {
@@ -45,6 +46,12 @@ function tagValue(item: string, tag: string): string {
 	return match ? decodeXml(match[1].trim()) : '';
 }
 
+function enclosureImage(item: string): string | null {
+	const enclosure = item.match(/<enclosure\b([^>]*)\/?>/i)?.[1] ?? '';
+	const match = enclosure.match(/\burl\s*=\s*(["'])(.*?)\1/i);
+	return match ? httpsLink(decodeXml(match[2].trim())) : null;
+}
+
 function parsePosts(xml: string): Post[] {
 	const items = xml.match(/<item>([\s\S]*?)<\/item>/gi) ?? [];
 	const posts: Post[] = [];
@@ -57,9 +64,10 @@ function parsePosts(xml: string): Post[] {
 		const pubDate = tagValue(item, 'pubDate');
 		const rawDescription = tagValue(item, 'description') || tagValue(item, 'content:encoded');
 		const description = truncate(stripHtml(rawDescription), DESC_MAX);
+		const image = enclosureImage(item);
 
 		if (!title || !link) continue;
-		posts.push({ title, link, pubDate, description });
+		posts.push({ title, link, pubDate, description, image });
 	}
 
 	return posts;

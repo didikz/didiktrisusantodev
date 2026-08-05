@@ -17,6 +17,7 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 		link: string;
 		pubDate: string;
 		description: string;
+		image: string | null;
 	};
 
 	function formatDate(value: string): string {
@@ -35,6 +36,9 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 			const li = document.createElement('li');
 			li.className = 'item';
 
+			const content = document.createElement('div');
+			content.className = 'content';
+
 			const eyebrow = document.createElement('p');
 			eyebrow.className = 'eyebrow';
 			eyebrow.textContent = formatDate(post.pubDate);
@@ -46,13 +50,31 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 			link.textContent = post.title;
 			title.append(link);
 
-			li.append(eyebrow, title);
+			content.append(eyebrow, title);
 
 			if (post.description) {
 				const body = document.createElement('p');
 				body.className = 'body';
 				body.textContent = post.description;
-				li.append(body);
+				content.append(body);
+			}
+
+			li.append(content);
+
+			if (post.image) {
+				const imageLink = document.createElement('a');
+				imageLink.className = 'thumbnail';
+				imageLink.href = post.link;
+				imageLink.tabIndex = -1;
+				imageLink.setAttribute('aria-hidden', 'true');
+
+				const image = document.createElement('img');
+				image.src = post.image;
+				image.alt = '';
+				image.loading = 'lazy';
+				image.decoding = 'async';
+				imageLink.append(image);
+				li.append(imageLink);
 			}
 
 			list.append(li);
@@ -122,6 +144,10 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 	}
 
 	.latest :global(.item) {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 1rem;
 		padding-block: 1.35rem;
 		border-top: 1px solid var(--gray-700);
 	}
@@ -154,6 +180,27 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 		color: var(--accent-regular);
 	}
 
+	.latest :global(.thumbnail) {
+		display: block;
+		width: clamp(6.5rem, 24vw, 10rem);
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		border-radius: 0.35rem;
+		background: var(--gray-800);
+	}
+
+	.latest :global(.thumbnail img) {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform var(--theme-transition);
+	}
+
+	.latest :global(.item:hover .thumbnail img) {
+		transform: scale(1.03);
+	}
+
 	.latest :global(.body) {
 		margin: 0;
 		color: var(--gray-200);
@@ -180,8 +227,22 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 	}
 
 	@media (min-width: 50em) {
+		.latest :global(.item) {
+			gap: 1.5rem;
+		}
+
 		.latest :global(.title) {
 			font-size: var(--text-xl);
+		}
+
+		.latest :global(.thumbnail) {
+			width: 12rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.latest :global(.thumbnail img) {
+			transition: none;
 		}
 	}
 </style>
