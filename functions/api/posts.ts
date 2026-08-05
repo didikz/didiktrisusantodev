@@ -49,7 +49,9 @@ function parsePosts(xml: string): Post[] {
 	const items = xml.match(/<item>([\s\S]*?)<\/item>/gi) ?? [];
 	const posts: Post[] = [];
 
-	for (const item of items.slice(0, LIMIT)) {
+	for (const item of items) {
+		if (posts.length >= LIMIT) break;
+
 		const title = stripHtml(tagValue(item, 'title'));
 		const link = httpsLink(tagValue(item, 'link').replace(/<[^>]+>/g, '').trim());
 		const pubDate = tagValue(item, 'pubDate');
