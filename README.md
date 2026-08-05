@@ -24,8 +24,10 @@ Open the URL Astro prints (default `http://localhost:4321`).
 | `npm run build` | Static site → `dist/` |
 | `npm run preview` | Preview the production build |
 
+To exercise the `/api/posts` Pages Function locally: `npm run build` then `npx wrangler pages dev dist` (`astro dev` serves static pages only).
+
 ## Stack
 
 - Astro 7 (static output, no UI framework)
 - `@astrojs/sitemap`
-- Deployed via Cloudflare Pages
+- Cloudflare Pages (+ `functions/` for live blog RSS)
