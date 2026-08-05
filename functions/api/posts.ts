@@ -29,6 +29,15 @@ function truncate(text: string, max: number): string {
 	return `${text.slice(0, max - 1).trimEnd()}…`;
 }
 
+function httpsLink(raw: string): string | null {
+	try {
+		const url = new URL(raw);
+		return url.protocol === 'https:' ? url.toString() : null;
+	} catch {
+		return null;
+	}
+}
+
 function tagValue(item: string, tag: string): string {
 	const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i');
 	const match = item.match(re);
@@ -41,7 +50,7 @@ function parsePosts(xml: string): Post[] {
 
 	for (const item of items.slice(0, LIMIT)) {
 		const title = stripHtml(tagValue(item, 'title'));
-		const link = tagValue(item, 'link').replace(/<[^>]+>/g, '').trim();
+		const link = httpsLink(tagValue(item, 'link').replace(/<[^>]+>/g, '').trim());
 		const pubDate = tagValue(item, 'pubDate');
 		const rawDescription = tagValue(item, 'description') || tagValue(item, 'content:encoded');
 		const description = truncate(stripHtml(rawDescription), DESC_MAX);
