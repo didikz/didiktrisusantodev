@@ -4,15 +4,12 @@ import { iconPaths } from './IconPaths';
 
 interface Props {
 	icon: keyof typeof iconPaths;
-	color?: string;
 	size?: string;
 }
 
-const { color = 'currentcolor', icon, size } = Astro.props;
+const { icon, size } = Astro.props;
 const iconPath = iconPaths[icon];
-
-const attrs: HTMLAttributes<'svg'> = {};
-if (size) attrs.style = { '--size': size };
+const style: HTMLAttributes<'svg'>['style'] = size ? { '--size': size } : undefined;
 ---
 
 <svg
@@ -21,9 +18,9 @@ if (size) attrs.style = { '--size': size };
 	height="40"
 	viewBox="0 0 256 256"
 	aria-hidden="true"
-	stroke={color}
-	fill={color}
-	{...attrs}
+	stroke="currentcolor"
+	fill="currentcolor"
+	{style}
 >
 	<g set:html={iconPath} />
 </svg>

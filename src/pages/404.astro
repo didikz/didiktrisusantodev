@@ -1,15 +1,51 @@
 ---
-import Hero from '../components/Hero.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import CallToAction from '../components/CallToAction.astro';
 ---
 
 <BaseLayout
-	title="Page Not Found | Didik Tri Susanto"
-	description="This page could not be found."
+	title="Wrong turn | Didik Tri Susanto"
+	description="The road doesn't exist. Rerouting you back."
 	noindex
 >
 	<main class="page">
-		<Hero title="Page Not Found" tagline="Not found" />
+		<div class="not-found">
+			<h1 class="title">Wrong turn.</h1>
+
+			<svg
+				class="route"
+				viewBox="0 0 600 40"
+				preserveAspectRatio="none"
+				aria-hidden="true"
+			>
+				<path
+					class="route-line"
+					pathLength="1"
+					d="M4 26 C 120 6, 240 38, 360 18 S 540 8, 580 22"
+					fill="none"
+					stroke="var(--accent-regular)"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-dasharray="0.02 0.012"
+				/>
+				<g class="marker">
+					<circle class="marker-ping" cx="580" cy="22" r="4" />
+					<circle class="marker-dot" cx="580" cy="22" r="3.5" />
+				</g>
+			</svg>
+
+			<p class="marker-label">
+				<span class="marker-code">404 NOT_FOUND</span>
+			</p>
+
+			<p class="tagline">This road doesn't exist — rerouting you to the main road.</p>
+
+			<div class="actions">
+				<CallToAction href="/">Reroute to home</CallToAction>
+				<a class="secondary" href="/experience/">While you're lost, see my work → Experience</a>
+				<a class="secondary" href="https://blog.didiktrisusanto.dev/">Or detour to the blog</a>
+			</div>
+		</div>
 	</main>
 </BaseLayout>
 
@@ -18,5 +54,165 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 		width: min(100% - 2rem, 42rem);
 		margin-inline: auto;
 		padding-block: 2rem 4rem;
+	}
+
+	.not-found {
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		align-items: flex-start;
+	}
+
+	.title {
+		font-family: var(--font-brand);
+		font-size: var(--text-3xl);
+		font-weight: 500;
+		letter-spacing: -0.03em;
+		color: var(--gray-0);
+		margin: 0;
+	}
+
+	.route {
+		display: block;
+		width: 100%;
+		height: 2.5rem;
+		margin-top: 0.25rem;
+		overflow: visible;
+	}
+
+	.route-line {
+		stroke-dashoffset: 1;
+	}
+
+	.marker-ping {
+		opacity: 0;
+		transform-origin: 580px 22px;
+	}
+
+	.marker-label {
+		margin: 0;
+		font-family: var(--font-brand);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--gray-300);
+		letter-spacing: 0.06em;
+	}
+
+	.marker-code {
+		color: var(--accent-regular);
+	}
+
+	.tagline {
+		color: var(--gray-200);
+		font-size: var(--text-base);
+		margin: 0;
+		max-width: 38ch;
+	}
+
+	.actions {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 1rem;
+		margin-top: 0.75rem;
+	}
+
+	.secondary {
+		color: var(--gray-300);
+		text-decoration: underline;
+		text-decoration-color: transparent;
+		text-underline-offset: 0.25em;
+		font-size: var(--text-sm);
+		font-family: var(--font-brand);
+		font-weight: 500;
+		letter-spacing: 0.01em;
+		transition:
+			color var(--theme-transition),
+			text-decoration-color var(--theme-transition);
+	}
+
+	.secondary:hover,
+	.secondary:focus-visible {
+		color: var(--gray-0);
+		text-decoration-color: currentColor;
+	}
+
+	@media (min-width: 50em) {
+		.title {
+			font-size: var(--text-4xl);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.title,
+		.route,
+		.marker-label,
+		.tagline,
+		.actions {
+			animation: content-reveal 0.55s var(--motion-ease) both;
+		}
+
+		.route {
+			animation-delay: 0.08s;
+		}
+
+		.marker-label {
+			animation-delay: 0.16s;
+		}
+
+		.tagline {
+			animation-delay: 0.22s;
+		}
+
+		.actions {
+			animation-delay: 0.3s;
+		}
+
+		.route-line {
+			animation: route-draw 0.9s var(--motion-ease) 0.15s forwards;
+		}
+
+		.marker-ping {
+			animation: marker-ping 1.2s ease-out 1.05s both;
+		}
+
+		@keyframes route-draw {
+			to {
+				stroke-dashoffset: 0;
+			}
+		}
+
+		@keyframes marker-ping {
+			0% {
+				opacity: 0;
+				transform: scale(0.6);
+			}
+			70% {
+				opacity: 0;
+				transform: scale(3.2);
+			}
+			100% {
+				opacity: 0;
+				transform: scale(3.2);
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.title,
+		.route,
+		.marker-label,
+		.tagline,
+		.actions {
+			animation: none;
+		}
+
+		.route-line {
+			stroke-dashoffset: 0;
+		}
+
+		.marker-ping {
+			display: none;
+		}
 	}
 </style>

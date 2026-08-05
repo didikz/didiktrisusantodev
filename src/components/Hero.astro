@@ -2,14 +2,13 @@
 interface Props {
 	title: string;
 	tagline?: string;
-	align?: 'start' | 'center';
 	inkStroke?: boolean;
 }
 
-const { align = 'center', tagline, title, inkStroke = false } = Astro.props;
+const { tagline, title, inkStroke = false } = Astro.props;
 ---
 
-<header class:list={['hero stack gap-4', align]}>
+<header class="hero stack gap-4 start">
 	<div class="stack gap-2">
 		<div class="title-block">
 			<h1 class="title">{title}</h1>
@@ -17,6 +16,7 @@ const { align = 'center', tagline, title, inkStroke = false } = Astro.props;
 				inkStroke && (
 					<svg class="ink-stroke" viewBox="0 0 200 12" aria-hidden="true">
 						<path
+							pathLength="1"
 							d="M2 8 C40 2, 80 10, 120 6 S180 3, 198 7"
 							fill="none"
 							stroke="var(--accent-regular)"
@@ -69,6 +69,24 @@ const { align = 'center', tagline, title, inkStroke = false } = Astro.props;
 		height: auto;
 		margin-top: -0.15rem;
 		margin-bottom: 0.25rem;
+		overflow: visible;
+	}
+
+	.ink-stroke path {
+		stroke-dasharray: 1;
+		stroke-dashoffset: 1;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.ink-stroke path {
+			animation: ink-draw 0.7s var(--motion-ease) 0.15s forwards;
+		}
+
+		@keyframes ink-draw {
+			to {
+				stroke-dashoffset: 0;
+			}
+		}
 	}
 
 	@media (min-width: 50em) {

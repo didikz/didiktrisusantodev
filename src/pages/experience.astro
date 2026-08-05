@@ -114,13 +114,13 @@ const earlier: Role[] = [
 		<Hero
 			title="Experience"
 			tagline="The path wasn't straight, but every step belonged."
-			align="start"
+			inkStroke
 		/>
 
 		<ol class="roles">
 			{
-				primary.map((role) => (
-					<li class="role">
+				primary.map((role, i) => (
+					<li class="role" style={`--i: ${i}`}>
 						<div class="meta">
 							{role.logo && (
 								<img class="logo" src={role.logo} alt="" width="20" height="20" loading="lazy" />
@@ -145,8 +145,8 @@ const earlier: Role[] = [
 		<p class="label" id="earlier-heading">Earlier</p>
 		<ol class="roles earlier" aria-labelledby="earlier-heading">
 			{
-				earlier.map((role) => (
-					<li class="role">
+				earlier.map((role, i) => (
+					<li class="role" style={`--i: ${i}`}>
 						<div class="meta">
 							{role.logo && (
 								<img class="logo" src={role.logo} alt="" width="20" height="20" loading="lazy" />
@@ -220,6 +220,7 @@ const earlier: Role[] = [
 
 	.company {
 		color: var(--gray-200);
+		font-size: var(--text-base);
 	}
 
 	.role-title {
@@ -273,6 +274,34 @@ const earlier: Role[] = [
 
 		.role-title {
 			font-size: var(--text-xl);
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.roles > .role,
+		.page :global(.title),
+		.page :global(.tagline) {
+			animation: content-reveal 0.5s var(--motion-ease) both;
+		}
+
+		.page :global(.tagline) {
+			animation-delay: 0.08s;
+		}
+
+		.roles > .role {
+			animation-delay: calc(0.2s + var(--i) * 70ms);
+		}
+
+		.earlier > .role {
+			animation-delay: calc(0.2s + var(--i) * 50ms);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.roles > .role,
+		.page :global(.title),
+		.page :global(.tagline) {
+			animation: none;
 		}
 	}
 </style>

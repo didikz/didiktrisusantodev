@@ -2,7 +2,7 @@
 const blogUrl = 'https://blog.didiktrisusanto.dev/';
 ---
 
-<section class="latest" aria-labelledby="writing-heading" data-latest-posts>
+<section class="latest list-block" aria-labelledby="writing-heading" data-latest-posts>
 	<p class="label" id="writing-heading">Latest writing</p>
 	<p class="status" data-status>Loading posts…</p>
 	<ul class="items" data-list hidden></ul>
@@ -119,28 +119,10 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 		gap: 1rem;
 	}
 
-	.label {
-		font-family: var(--font-brand);
-		font-size: var(--text-sm);
-		font-weight: 500;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--gray-300);
-		margin: 0;
-	}
-
 	.status {
 		margin: 0;
 		color: var(--gray-300);
 		font-size: var(--text-sm);
-	}
-
-	.items {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
 	}
 
 	.latest :global(.item) {
@@ -148,36 +130,6 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 		grid-template-columns: minmax(0, 1fr) auto;
 		align-items: center;
 		gap: 1rem;
-		padding-block: 1.35rem;
-		border-top: 1px solid var(--gray-700);
-	}
-
-	.latest :global(.item:last-child) {
-		border-bottom: 1px solid var(--gray-700);
-	}
-
-	.latest :global(.eyebrow) {
-		margin: 0 0 0.35rem;
-		font-family: var(--font-brand);
-		font-size: var(--text-sm);
-		color: var(--gray-300);
-	}
-
-	.latest :global(.title) {
-		margin: 0 0 0.4rem;
-		font-size: var(--text-lg);
-		font-weight: 600;
-		color: var(--gray-0);
-	}
-
-	.latest :global(.title a) {
-		color: inherit;
-		text-decoration: none;
-	}
-
-	.latest :global(.title a:hover),
-	.latest :global(.title a:focus-visible) {
-		color: var(--accent-regular);
 	}
 
 	.latest :global(.thumbnail) {
@@ -201,13 +153,6 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 		transform: scale(1.03);
 	}
 
-	.latest :global(.body) {
-		margin: 0;
-		color: var(--gray-200);
-		max-width: 52ch;
-		font-size: var(--text-base);
-	}
-
 	.more {
 		margin: 0;
 		font-size: var(--text-sm);
@@ -229,10 +174,6 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 	@media (min-width: 50em) {
 		.latest :global(.item) {
 			gap: 1.5rem;
-		}
-
-		.latest :global(.title) {
-			font-size: var(--text-xl);
 		}
 
 		.latest :global(.thumbnail) {

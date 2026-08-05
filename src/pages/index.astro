@@ -28,7 +28,6 @@ import ContactCTA from '../components/ContactCTA.astro';
 				<Hero
 					title="Didik Tri Susanto"
 					tagline="Backend-focused product engineer with 13 years of experience, including 6 years remote. I build usable, scalable systems across fintech, social commerce, education, and AI."
-					align="start"
 					inkStroke
 				/>
 				<div class="hero-actions">
@@ -93,40 +92,23 @@ import ContactCTA from '../components/ContactCTA.astro';
 	.portrait,
 	.hero-copy :global(.title),
 	.hero-copy :global(.tagline),
-	.hero-actions,
-	.hero-copy :global(.ink-stroke) {
-		animation: rise 0.55s ease both;
+	.hero-actions {
+		animation: content-reveal 0.55s var(--motion-ease) both;
 	}
 
 	.hero-copy :global(.tagline) {
 		animation-delay: 0.08s;
 	}
 
-	.hero-copy :global(.ink-stroke) {
-		animation-delay: 0.12s;
-	}
-
 	.hero-actions {
 		animation-delay: 0.18s;
-	}
-
-	@keyframes rise {
-		from {
-			opacity: 0;
-			transform: translateY(0.6rem);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.portrait,
 		.hero-copy :global(.title),
 		.hero-copy :global(.tagline),
-		.hero-actions,
-		.hero-copy :global(.ink-stroke) {
+		.hero-actions {
 			animation: none;
 		}
 	}
