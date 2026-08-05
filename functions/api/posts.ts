@@ -1,4 +1,5 @@
 const RSS_URL = 'https://blog.didiktrisusanto.dev/rss.xml';
+const RSS_TIMEOUT_MS = 10_000;
 const LIMIT = 3;
 const DESC_MAX = 160;
 
@@ -73,9 +74,13 @@ function json(data: unknown, status = 200): Response {
 }
 
 export async function onRequestGet() {
+	const controller = new AbortController();
+	const timeout = setTimeout(() => controller.abort(), RSS_TIMEOUT_MS);
+
 	try {
 		const res = await fetch(RSS_URL, {
 			headers: { Accept: 'application/rss+xml, application/xml, text/xml' },
+			signal: controller.signal,
 		});
 
 		if (!res.ok) {
@@ -88,5 +93,7 @@ export async function onRequestGet() {
 	} catch (err) {
 		const message = err instanceof Error ? err.message : 'Unknown error';
 		return json({ error: message }, 500);
+	} finally {
+		clearTimeout(timeout);
 	}
 }
