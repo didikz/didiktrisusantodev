@@ -1,19 +1,19 @@
 # AGENTS.md
 
-Personal portfolio. Plain Astro 7. No React/Vue/Svelte. No tests. No lint/formatter. Vanilla CSS + `.astro`. Tab indent. Node `>=22.12.0` (see `.nvmrc`).
+Portfolio. Plain Astro 7. No React/Vue/Svelte. No tests. No lint/formatter. Vanilla CSS + `.astro`. Tab indent. Node `>=22.12.0` (see `.nvmrc`).
 
 ## Commands
 
 - `npm run dev` — dev server
 - `npm run build` — build → `dist/`
 - `npm run preview` — preview build
-- No lint/typecheck/test scripts. Type check: `astro check` only.
+- No lint/typecheck/test. Type check: `astro check` only.
 
 ## Work collection
 
-- Markdown in `src/content/work/`, schema `src/content.config.ts` (`title`, `publishDate`, `img`, `description`, `tags`; `img_alt` optional).
-- Add project = new `.md` there. Detail page auto via `src/pages/work/[...slug].astro`.
-- List page: `src/pages/work.astro` (sort `publishDate` desc). Nested dirs OK → slug path.
+- Markdown in `src/content/work/`. Schema: `src/content.config.ts` (`title`, `publishDate`, `img`, `description`, `tags`; `img_alt` optional).
+- Add project = new `.md`. Detail page auto via `src/pages/work/[...slug].astro`.
+- List page disabled. To re-enable: `src/pages/work.astro` (sort `publishDate` desc). Nested dirs OK → slug path.
 - Stubs (`bloom-box`, `h20`, …) = theme placeholders, not real work. `/work` = `noindex`.
 
 ## Gotchas

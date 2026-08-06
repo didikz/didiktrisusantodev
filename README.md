@@ -14,17 +14,17 @@ npm install
 npm run dev
 ```
 
-Open the URL Astro prints (default `http://localhost:4321`).
+Astro prints URL (default `http://localhost:4321`).
 
 ## Scripts
 
 | Command | What it does |
 |---------|----------------|
-| `npm run dev` | Local dev server |
+| `npm run dev` | Dev server |
 | `npm run build` | Static site → `dist/` |
-| `npm run preview` | Preview the production build |
+| `npm run preview` | Preview build |
 
-To exercise the `/api/posts` Pages Function locally: `npm run build` then `npx wrangler pages dev dist` (`astro dev` serves static pages only).
+Test `/api/posts` locally: `npm run build` then `npx wrangler pages dev dist` (`astro dev` = static only).
 
 ## Stack
 
