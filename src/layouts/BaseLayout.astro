@@ -59,7 +59,7 @@ const personJsonLd = {
 		)}
 		<script defer src="https://cloud.umami.is/script.js" data-website-id="1c6158a7-f1be-4379-824c-30966c5d2805"></script>
 	</head>
-	<body>
+	<body class:list={{ 'is-home': isHome }}>
 		<div class="stack page-shell">
 			<Nav />
 			<slot />
@@ -69,7 +69,13 @@ const personJsonLd = {
 		<style>
 			.page-shell {
 				min-height: 100%;
-				background-color: var(--gray-999);
+			}
+
+			/* Desktop home: mock-matched stage owns the top chrome */
+			@media (min-width: 1280px) {
+				:global(body.is-home) .page-shell > :global(nav) {
+					display: none;
+				}
 			}
 		</style>
 	</body>

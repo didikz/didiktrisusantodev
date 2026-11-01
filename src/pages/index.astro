@@ -1,130 +1,767 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CallToAction from '../components/CallToAction.astro';
-import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
-import Skills from '../components/Skills.astro';
-import Selected from '../components/Selected.astro';
 import LatestPosts from '../components/LatestPosts.astro';
 import ContactCTA from '../components/ContactCTA.astro';
+import Icon from '../components/Icon.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import { stackItems } from '../data/stack';
+import { highlights } from '../data/highlights';
+import type { iconPaths } from '../components/IconPaths';
+
+const socials: { label: string; href: string; icon: keyof typeof iconPaths }[] = [
+	{ label: 'GitHub', href: 'https://github.com/didikz', icon: 'github-logo' },
+	{ label: 'Twitter', href: 'https://x.com/didikz', icon: 'twitter-logo' },
+	{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/didik-tri-susanto-16029443/', icon: 'linkedin-logo' },
+];
 ---
 
 <BaseLayout
 	title="Didik Tri Susanto | Backend Product Engineer"
-	description="Backend product engineer who owns the full loop — from design to production to maintenance. 13 years building reliable systems across fintech, social commerce, education, and AI."
+	description="Backend product engineer in Malang. 13 years taking systems from design through production and maintenance, across fintech, social commerce, education, and AI."
 >
 	<main class="page">
-		<div class="hero-block">
+		<div class="stage">
+			<nav class="stage-nav" aria-label="Primary">
+				<div class="stage-nav-links">
+					<a href="/" aria-current="page">Home</a>
+					<a href="/experience/">Experience</a>
+					<a href="/about/">About</a>
+					<a href="https://blog.didiktrisusanto.dev/">Blog</a>
+				</div>
+				<div class="stage-nav-tools">
+					{
+						socials.map(({ href, icon, label }) => (
+							<a href={href} class="stage-social">
+								<span class="sr-only">{label}</span>
+								<Icon icon={icon} size="1.15em" />
+							</a>
+						))
+					}
+					<span class="stage-theme">
+						<ThemeToggle />
+					</span>
+				</div>
+			</nav>
+
 			<img
 				class="portrait"
 				alt="Looking out over the sea from a beach"
-				width="96"
-				height="96"
+				width="384"
+				height="216"
 				title="Photo of Didik Tri Susanto"
 				loading="eager"
-				src="/assets/selfprotrait.webp"
+				src="/assets/plates/portrait.png"
 			/>
-			<div class="hero-copy">
-				<Hero
-					title="Didik Tri Susanto"
-					tagline="Backend product engineer with 13 years building systems people can rely on, from design to production to maintenance."
-					inkStroke
-				/>
-				<div class="hero-actions">
-					<CallToAction href="mailto:didiktrisusanto@gmail.com">
-						Email me
-						<Icon icon="paper-plane-tilt" size="1em" />
-					</CallToAction>
-				</div>
-			</div>
+
+			<h1 class="name">Didik Tri Susanto</h1>
+
+			<p class="tagline">
+				Backend product engineer.<br />
+				13 years taking systems from<br />
+				design through production<br />
+				and maintenance.
+			</p>
+
+			<p class="invites">
+				<a href="mailto:didiktrisusanto@gmail.com?subject=Open%20to%20a%20role">Open to a role</a>
+				<a href="mailto:didiktrisusanto@gmail.com?subject=Open%20to%20a%20project">Open to a project</a>
+			</p>
+
+			<a class="email" href="mailto:didiktrisusanto@gmail.com">Email me</a>
+
+			<h2 class="stack-label">Stack</h2>
+			<ul class="stack-chips">
+				{
+					stackItems.map((item) => (
+						<li>
+							<img
+								class:list={['chip-logo', { mono: item.mono }]}
+								src={`/assets/stack/${item.slug}.svg`}
+								alt=""
+								width="16"
+								height="16"
+								loading="lazy"
+							/>
+							<span>{item.label}</span>
+						</li>
+					))
+				}
+			</ul>
+
+			<h2 class="highlights-label">Highlights</h2>
+			{
+				highlights.map((item) => (
+					<p class={`highlight highlight-${item.id}`}>
+						<strong>
+							<a href={item.href}>{item.title}</a>
+						</strong>{' '}
+						— {item.home}
+					</p>
+				))
+			}
 		</div>
 
-		<Selected />
-
-		<Skills />
-
-		<LatestPosts />
-
-		<ContactCTA />
+		<div class="after">
+			<LatestPosts />
+			<ContactCTA />
+		</div>
 	</main>
 </BaseLayout>
 
 <style>
+	/* —— Phone: stacked page —— */
 	.page {
-		width: min(100% - 2rem, 42rem);
+		width: min(100% - 2rem, 48rem);
 		margin-inline: auto;
-		padding-block: 1rem 4rem;
-		display: flex;
-		flex-direction: column;
-		gap: 3.5rem;
+		padding-block: 0.5rem 4rem;
 	}
 
-	.hero-block {
+	.stage-nav {
+		display: none;
+	}
+
+	.stage {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 1.25rem;
-		position: relative;
+		gap: 1.1rem;
+		text-align: center;
+		margin-bottom: 3rem;
 	}
 
 	.portrait {
-		width: 4.5rem;
-		height: 4.5rem;
-		border-radius: 999rem;
-		object-fit: cover;
-		object-position: top;
+		width: 8.5rem;
+		height: 8.5rem;
+		object-fit: contain;
+	}
+
+	.name {
+		margin: 0;
+		font-family: var(--font-brand);
+		font-size: clamp(2rem, 5vw, 3rem);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		color: var(--gray-0);
+		line-height: 1.1;
+	}
+
+	.tagline {
+		margin: 0;
+		font-size: var(--text-md);
+		color: var(--gray-0);
+		max-width: 36ch;
+		line-height: 1.4;
+	}
+
+	.invites {
+		margin: 0;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.85rem 1.25rem;
+		font-size: var(--text-base);
+		font-weight: 400;
+	}
+
+	.invites a {
+		color: var(--gray-0) !important;
+		-webkit-text-fill-color: var(--gray-0);
+		text-decoration: underline;
+		text-decoration-color: currentColor;
+		text-underline-offset: 0.2em;
+	}
+
+	.email {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.5rem;
+		padding: 0.45em 1em;
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--accent-text-over);
+		background: var(--accent-regular);
+		border-radius: 0.35rem;
+		text-decoration: none;
+	}
+
+	.stack-label,
+	.highlights-label {
+		margin: 1.5rem 0 0;
+		align-self: flex-start;
+		font-family: var(--font-brand);
+		font-size: var(--text-xl);
+		font-weight: 700;
+		color: var(--gray-0);
+	}
+
+	.stack-chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		width: 100%;
+	}
+
+	.stack-chips li {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.35rem 0.75rem;
 		border: 1px solid var(--gray-700);
+		border-radius: 999rem;
+		font-size: var(--text-sm);
+		color: var(--gray-0);
+		background: color-mix(in srgb, var(--gray-999) 70%, #fff);
 	}
 
-	.hero-copy {
-		position: relative;
+	.chip-logo {
+		display: block;
+		width: 1rem;
+		height: 1rem;
+		object-fit: contain;
+	}
+
+	.chip-logo.mono {
+		filter: grayscale(1) contrast(1.1);
+	}
+
+	.highlight {
+		margin: 0;
+		text-align: start;
 		width: 100%;
+		font-size: var(--text-base);
+		color: var(--gray-0);
+		padding-block: 0.65rem;
+		border-top: 1px solid var(--gray-700);
 	}
 
-	.hero-actions {
-		margin-top: 1.25rem;
+	.highlight-dot {
+		border-bottom: 1px solid var(--gray-700);
 	}
 
-	.hero-actions :global(a) {
-		width: 100%;
+	.highlight a {
+		color: var(--gray-0) !important;
+		-webkit-text-fill-color: var(--gray-0);
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, var(--gray-0) 35%, transparent);
+		text-underline-offset: 0.15em;
 	}
 
-	.portrait,
-	.hero-copy :global(.title),
-	.hero-copy :global(.tagline),
-	.hero-actions {
-		animation: content-reveal 0.55s var(--motion-ease) both;
+	.highlight a:hover,
+	.highlight a:focus-visible {
+		text-decoration-color: currentColor;
 	}
 
-	.hero-copy :global(.tagline) {
-		animation-delay: 0.08s;
+	.after {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		padding-top: 1rem;
 	}
 
-	.hero-actions {
-		animation-delay: 0.18s;
+	/* —— Tablet+: portrait beside intro (DESIGN from 50em) —— */
+	@media (min-width: 50em) and (max-width: 1279px) {
+		.page {
+			width: min(100% - 3rem, 56rem);
+		}
+
+		.stage {
+			display: grid;
+			grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
+			grid-template-areas:
+				'portrait name'
+				'portrait tagline'
+				'portrait invites'
+				'portrait email'
+				'stack-label stack-label'
+				'stack-chips stack-chips'
+				'highlights-label highlights-label'
+				'highlights highlights'
+				'highlights2 highlights2'
+				'highlights3 highlights3';
+			column-gap: 1.75rem;
+			row-gap: 0.85rem;
+			align-items: start;
+			text-align: start;
+		}
+
+		.portrait {
+			grid-area: portrait;
+			width: 100%;
+			max-width: 14rem;
+			height: auto;
+			aspect-ratio: 1;
+			object-fit: contain;
+			justify-self: start;
+		}
+
+		.name {
+			grid-area: name;
+			font-size: clamp(2.25rem, 4vw, 3rem);
+		}
+
+		.tagline {
+			grid-area: tagline;
+		}
+
+		.tagline :global(br) {
+			display: none;
+		}
+
+		.invites {
+			grid-area: invites;
+			justify-content: flex-start;
+		}
+
+		.email {
+			grid-area: email;
+			justify-self: start;
+		}
+
+		.stack-label {
+			grid-area: stack-label;
+			margin-top: 1.25rem;
+		}
+
+		.stack-chips {
+			grid-area: stack-chips;
+		}
+
+		.highlights-label {
+			grid-area: highlights-label;
+			margin-top: 1.25rem;
+		}
+
+		.highlight-omcom {
+			grid-area: highlights;
+		}
+
+		.highlight-flip {
+			grid-area: highlights2;
+		}
+
+		.highlight-dot {
+			grid-area: highlights3;
+		}
+	}
+
+	/* —— Desktop first screen: fluid 1280–1600 composition —— */
+	@media (min-width: 1280px) {
+		.page {
+			width: 100%;
+			max-width: none;
+			margin-inline: auto;
+			padding: 0 0 4rem;
+		}
+
+		.stage {
+			position: relative;
+			width: min(100vw, 1600px);
+			aspect-ratio: 1280 / 720;
+			height: auto;
+			margin: 0 auto 3rem;
+			padding: 0;
+			display: block;
+			text-align: start;
+			overflow: hidden;
+			container-type: size;
+			container-name: home-stage;
+			background-color: var(--gray-999);
+			background-image: none;
+		}
+
+		.stage-nav {
+			display: flex;
+			position: absolute;
+			left: 70%;
+			top: 0;
+			width: 30%;
+			height: 10%;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 0.85cqw;
+			padding: 0 1.6cqw 0 0;
+			box-sizing: border-box;
+			font-family: var(--font-body);
+			font-size: 1.17cqw;
+			font-weight: 400;
+			line-height: 1;
+			z-index: 5;
+		}
+
+		.stage-nav-links {
+			display: flex;
+			align-items: center;
+			gap: 1.05cqw;
+		}
+
+		.stage-nav-tools {
+			display: flex;
+			align-items: center;
+			gap: 0.55cqw;
+			margin-left: 0.4cqw;
+		}
+
+		.stage-nav a {
+			color: var(--gray-0);
+			text-decoration: none;
+			padding: 0;
+			line-height: 1;
+		}
+
+		.stage-nav a[aria-current='page'] {
+			font-weight: 600;
+		}
+
+		.stage-social {
+			display: inline-flex;
+			color: var(--gray-0);
+			opacity: 0.85;
+		}
+
+		.stage-social:hover,
+		.stage-social:focus-visible {
+			opacity: 1;
+		}
+
+		.stage-theme {
+			display: inline-flex;
+			scale: 0.85;
+		}
+
+		.portrait {
+			position: absolute;
+			left: 7.03125%;
+			top: 12.361%;
+			width: 19.609%;
+			height: 27.639%;
+			object-fit: cover;
+			object-position: 55% 38%;
+			transform: scale(1.35);
+			transform-origin: center center;
+		}
+
+		.name {
+			position: absolute;
+			left: 30%;
+			top: 10%;
+			width: 40%;
+			height: 20%;
+			margin: 0;
+			padding-top: 6.39cqh;
+			box-sizing: border-box;
+			font-size: 4.45cqw;
+			font-weight: 700;
+			line-height: 1.05;
+			letter-spacing: -0.02em;
+			color: var(--gray-0);
+		}
+
+		.tagline {
+			position: absolute;
+			left: 30%;
+			top: 20%;
+			width: 40%;
+			height: 20%;
+			margin: 0;
+			max-width: none;
+			padding-top: 3.06cqh;
+			box-sizing: border-box;
+			overflow: hidden;
+			font-family: var(--font-body);
+			font-size: 1.8cqw;
+			font-weight: 400;
+			line-height: 1.28;
+			letter-spacing: 0;
+			color: var(--gray-0);
+		}
+
+		.invites {
+			position: absolute;
+			left: 30%;
+			top: 40%;
+			width: 30%;
+			height: 10%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			gap: 1.45cqw;
+			margin: 0;
+			font-size: 1.41cqw;
+			letter-spacing: 0;
+			z-index: 2;
+		}
+
+		.invites a {
+			color: var(--gray-0) !important;
+			-webkit-text-fill-color: var(--gray-0);
+			font-family: var(--font-body);
+			font-weight: 300;
+			letter-spacing: -0.03em;
+			text-decoration: none !important;
+			border: 0;
+			font-size: 1.41cqw;
+			line-height: 1;
+		}
+
+		.email {
+			position: absolute;
+			left: 60%;
+			top: 42.5%;
+			width: 8.91%;
+			height: 6.67%;
+			min-width: 0;
+			min-height: 0;
+			padding: 0 1em;
+			font-size: 1.25cqw;
+			font-weight: 600;
+			border-radius: 0.35rem;
+			box-sizing: border-box;
+			background: var(--accent-regular);
+			color: var(--accent-text-over);
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 2;
+		}
+
+		.stack-label {
+			position: absolute;
+			left: 6.56%;
+			top: 54.17%;
+			width: 6.56%;
+			height: 5%;
+			margin: 0;
+			padding-top: 0.83cqh;
+			box-sizing: border-box;
+			font-family: var(--font-brand);
+			font-size: 2.27cqw;
+			font-weight: 700;
+			line-height: 1;
+			letter-spacing: 0;
+			align-self: auto;
+			color: var(--gray-0);
+		}
+
+		.stack-chips {
+			position: absolute;
+			left: 6.56%;
+			top: 60%;
+			width: 83.44%;
+			height: 7.5%;
+			display: flex;
+			flex-wrap: nowrap;
+			align-items: center;
+			gap: 0.43cqw;
+			overflow: hidden;
+			letter-spacing: 0;
+		}
+
+		.stack-chips li {
+			padding: 0.55cqh 0.66cqw;
+			font-size: 1.25cqw;
+			font-weight: 400;
+			letter-spacing: 0;
+			background: color-mix(in srgb, var(--gray-999) 40%, #fff);
+			border: 1px solid var(--gray-300);
+			border-radius: 999rem;
+			flex-shrink: 0;
+			color: var(--gray-0);
+			gap: 0.3cqw;
+		}
+
+		.chip-logo {
+			width: 0.95cqw;
+			height: 0.95cqw;
+		}
+
+		.highlights-label {
+			position: absolute;
+			left: 6.56%;
+			top: 70%;
+			width: 50%;
+			height: 10%;
+			margin: 0;
+			padding-top: 1.6cqh;
+			box-sizing: border-box;
+			font-family: var(--font-brand);
+			font-size: 1.41cqw;
+			font-weight: 700;
+			letter-spacing: 0;
+			line-height: 1.1;
+			color: var(--gray-0);
+		}
+
+		.highlight {
+			position: absolute;
+			left: 6.56%;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-family: var(--font-body);
+			font-weight: 400;
+			letter-spacing: -0.02em;
+			line-height: 1.15;
+			color: var(--gray-0);
+			white-space: nowrap;
+			box-sizing: border-box;
+		}
+
+		.highlight-omcom {
+			top: 78.47%;
+			width: 90%;
+			height: auto;
+			font-size: 1.72cqw;
+		}
+
+		.highlight-flip {
+			top: 84.58%;
+			width: 90%;
+			height: auto;
+			font-size: 1.48cqw;
+		}
+
+		.highlight-dot {
+			top: 90.42%;
+			width: 50%;
+			height: 4.17%;
+			font-size: 1.72cqw;
+			line-height: 4.17cqh;
+			border-bottom: 0;
+		}
+
+		.highlight strong {
+			font-weight: 700;
+		}
+
+		.highlight a {
+			color: var(--gray-0) !important;
+			-webkit-text-fill-color: var(--gray-0);
+			text-decoration: none !important;
+		}
+
+		.after {
+			padding-top: 3rem;
+			width: min(100% - 4rem, 48rem);
+			margin-inline: auto;
+		}
+	}
+
+	/* —— Motion —— */
+	@media (prefers-reduced-motion: no-preference) {
+		.portrait,
+		.name,
+		.tagline,
+		.invites,
+		.email,
+		.stack-label,
+		.stack-chips,
+		.highlights-label,
+		.highlight {
+			animation: content-reveal 0.55s var(--motion-ease) both;
+		}
+
+		.portrait {
+			animation-delay: 0.04s;
+		}
+		.name {
+			animation-delay: 0.1s;
+		}
+		.tagline {
+			animation-delay: 0.16s;
+		}
+		.invites {
+			animation-delay: 0.22s;
+		}
+		.email {
+			animation-delay: 0.26s;
+		}
+		.stack-label {
+			animation-delay: 0.32s;
+		}
+		.stack-chips {
+			animation-delay: 0.36s;
+		}
+		.highlights-label {
+			animation-delay: 0.42s;
+		}
+		.highlight-omcom {
+			animation-delay: 0.46s;
+		}
+		.highlight-flip {
+			animation-delay: 0.5s;
+		}
+		.highlight-dot {
+			animation-delay: 0.54s;
+		}
+
+		.invites a {
+			transition: opacity var(--theme-transition);
+		}
+
+		.invites a:hover,
+		.invites a:focus-visible {
+			opacity: 0.65;
+		}
+
+		.email {
+			transition:
+				transform var(--theme-transition),
+				filter var(--theme-transition);
+		}
+
+		.email:hover,
+		.email:focus-visible {
+			transform: translateY(-1px);
+			filter: brightness(0.94);
+		}
+
+		.stack-chips li {
+			transition:
+				border-color var(--theme-transition),
+				transform var(--theme-transition);
+		}
+
+		.stack-chips li:hover {
+			border-color: var(--gray-200);
+			transform: translateY(-1px);
+		}
+	}
+
+	@media (min-width: 1280px) and (prefers-reduced-motion: no-preference) {
+		.portrait {
+			animation-name: portrait-fade;
+		}
+
+		@keyframes portrait-fade {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+
+		.email:hover,
+		.email:focus-visible {
+			transform: none;
+		}
 	}
 
 	@media (prefers-reduced-motion: reduce) {
 		.portrait,
-		.hero-copy :global(.title),
-		.hero-copy :global(.tagline),
-		.hero-actions {
+		.name,
+		.tagline,
+		.invites,
+		.email,
+		.stack-label,
+		.stack-chips,
+		.highlights-label,
+		.highlight {
 			animation: none;
-		}
-	}
-
-	@media (min-width: 50em) {
-		.page {
-			padding-block: 1.5rem 5rem;
-			gap: 4.5rem;
-		}
-
-		.hero-block {
-			align-items: flex-start;
-		}
-
-		.hero-actions :global(a) {
-			width: auto;
 		}
 	}
 </style>

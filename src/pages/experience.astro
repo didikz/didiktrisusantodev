@@ -21,10 +21,10 @@ const primary: Role[] = [
 		company: 'Omcom',
 		logo: '/assets/logos/omcom-logo.png',
 		summary:
-			'Solo product engineer for a Singapore social-commerce platform: web client, APIs, and GCP/AWS infrastructure end to end. Serves 200+ active stores, 100k–200k daily messages, and 7k–8k daily reviews AI reply at 99.956% uptime.',
+			'Solo product engineer for a Singapore social-commerce platform: the web client, the APIs, and GCP/AWS infrastructure, end to end. It serves 200+ active stores and 100k–200k messages a day, with AI replies on 7k–8k reviews a day, at 99.956% uptime.',
 		highlights: [
 			'Owned the full loop: product ideas, build, test, release, and maintenance',
-			'Revamped the merchant web app from scratch (React, Bun, Vite) and launched in ~2 months',
+			'Rebuilt the merchant web app from scratch (React, Bun, Vite) and launched it in about two months',
 			'Built a chatbot for automatic replies across 3 pilot stores, with a 75% reply rate on 3.6k messages',
 		],
 	},
@@ -35,10 +35,10 @@ const primary: Role[] = [
 		company: 'Flip',
 		logo: '/assets/logos/flip-logo.jpg',
 		summary:
-			'Backend engineer on Flip For Business disbursement, remote from Indonesia, designing scalable product solutions for high-traffic money movement.',
+			'Backend engineer on Flip for Business disbursement, remote from Indonesia, designing the product for high-traffic money movement.',
 		highlights: [
-			'Raised created–confirmed disbursement API monthly SLA (p95 < 5s) from under 60% to over 95%',
-			'Cut disbursement API p95 latency from over 5s to under 1s while serving 200k+ daily requests',
+			'Raised the monthly created-to-confirmed disbursement API SLA (95th percentile under 5 seconds) from under 60% to over 95%',
+			'Cut disbursement API latency at the 95th percentile from over 5 seconds to under 1 second, at 200k+ requests a day',
 			'Migrated five back-office modules from monolith to Go microservices; led SNAP compliance work',
 		],
 	},
@@ -48,7 +48,7 @@ const primary: Role[] = [
 		company: 'Avana',
 		logo: '/assets/logos/avana.jpg',
 		summary:
-			'Platform lead for store and dashboard, remote from Bandung, spanning infrastructure, backend delivery, hiring, and release control.',
+			'Platform lead for the store and dashboard, remote from Bandung. Covered infrastructure, backend delivery, hiring, and release control.',
 		highlights: [
 			'Modernized store infrastructure from a single VPS to AWS Fargate with 20k+ RPS capacity',
 			'Ran load tests to benchmark performance and find improvement targets',
@@ -56,6 +56,7 @@ const primary: Role[] = [
 		],
 	},
 	{
+		id: 'dot',
 		period: '2018–2020',
 		title: 'VP of Engineering',
 		company: 'DOT Indonesia',
@@ -116,7 +117,7 @@ const earlier: Role[] = [
 	<main class="page">
 		<Hero
 			title="Experience"
-			tagline="The path wasn't straight, but every step belonged."
+			tagline="The path wasn't straight. Every step still belonged."
 			inkStroke
 		/>
 
@@ -254,11 +255,10 @@ const earlier: Role[] = [
 
 	.label {
 		font-family: var(--font-brand);
-		font-size: var(--text-sm);
-		font-weight: 500;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--gray-300);
+		font-size: var(--text-xl);
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		color: var(--gray-0);
 		margin: 0.5rem 0 0;
 	}
 

@@ -23,6 +23,7 @@ pnpm-debug.log*
 # Local agent tooling (not part of the site)
 .agents/
 .claude/
+.impeccable/
 
 # Cloudflare Wrangler local cache
 .wrangler/

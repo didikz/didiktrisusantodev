@@ -3,7 +3,7 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 ---
 
 <section class="latest list-block" aria-labelledby="writing-heading" data-latest-posts>
-	<p class="label" id="writing-heading">Latest writing</p>
+	<h2 class="label" id="writing-heading">Latest writing</h2>
 	<p class="status" data-status>Loading posts…</p>
 	<ul class="items" data-list hidden></ul>
 	<p class="more">
@@ -93,7 +93,7 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 			const posts = data.posts ?? [];
 
 			if (posts.length === 0) {
-				status.textContent = 'No recent posts yet.';
+				status.textContent = 'More writing on the blog.';
 				status.hidden = false;
 				list.hidden = true;
 				return;
@@ -103,7 +103,7 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 			status.hidden = true;
 			list.hidden = false;
 		} catch {
-			status.textContent = "Posts didn’t load.";
+			status.textContent = 'More writing on the blog.';
 			status.hidden = false;
 			list.hidden = true;
 		}
@@ -121,10 +121,20 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 		gap: 1rem;
 	}
 
+	.label {
+		margin: 0;
+		font-family: var(--font-brand);
+		font-size: var(--text-xl);
+		font-weight: 700;
+		color: var(--gray-0);
+		letter-spacing: -0.02em;
+	}
+
 	.status {
 		margin: 0;
-		color: var(--gray-300);
+		color: var(--gray-400);
 		font-size: var(--text-sm);
+		opacity: 0.85;
 	}
 
 	.latest :global(.item) {

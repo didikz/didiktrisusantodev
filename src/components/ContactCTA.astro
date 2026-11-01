@@ -3,9 +3,8 @@
 
 <aside class="contact">
 	<div class="copy">
-		<p class="label">Get in touch</p>
 		<h2>
-			Hiring a backend product engineer?
+			Hiring, or starting a project?{' '}
 			<a href="mailto:didiktrisusanto@gmail.com">Email me</a>
 		</h2>
 	</div>
@@ -24,28 +23,21 @@
 		width: 100%;
 	}
 
-	.label {
-		font-family: var(--font-brand);
-		font-size: var(--text-sm);
-		font-weight: 500;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--gray-300);
-		margin-bottom: 0.5rem;
-	}
-
 	h2 {
 		margin: 0;
-		font-size: var(--text-md);
-		font-weight: 600;
+		font-family: var(--font-brand);
+		font-size: var(--text-lg);
+		font-weight: 700;
 		color: var(--gray-0);
 		max-width: 28ch;
+		letter-spacing: -0.02em;
+		line-height: 1.35;
 	}
 
 	h2 a {
 		color: var(--accent-regular);
 		text-decoration: underline;
-		text-decoration-color: color-mix(in srgb, var(--accent-regular) 35%, transparent);
+		text-decoration-color: color-mix(in srgb, var(--accent-regular) 40%, transparent);
 		text-underline-offset: 0.18em;
 		transition: text-decoration-color var(--theme-transition);
 	}
@@ -63,11 +55,10 @@
 	@media (min-width: 50em) {
 		.contact {
 			padding: 4rem 0 1rem;
-			gap: 1.5rem;
 		}
 
 		h2 {
-			font-size: var(--text-lg);
+			font-size: var(--text-xl);
 			max-width: 34ch;
 		}
 	}

@@ -11,10 +11,8 @@ Portfolio. Plain Astro 7. No React/Vue/Svelte. No tests. No lint/formatter. Vani
 
 ## Work collection
 
-- Markdown in `src/content/work/`. Schema: `src/content.config.ts` (`title`, `publishDate`, `img`, `description`, `tags`; `img_alt` optional).
-- Add project = new `.md`. Detail page auto via `src/pages/work/[...slug].astro`.
-- List page disabled. To re-enable: `src/pages/work.astro` (sort `publishDate` desc). Nested dirs OK → slug path.
-- Stubs (`bloom-box`, `h20`, …) = theme placeholders, not real work. `/work` = `noindex`.
+- Schema still in `src/content.config.ts`, but stub markdown and `/work` routes are removed (ponytail cleanup).
+- To revive: add markdown under `src/content/work/`, restore `src/pages/work.astro` + `src/pages/work/[...slug].astro`, and stock/preview imagery.
 
 ## Gotchas
 
