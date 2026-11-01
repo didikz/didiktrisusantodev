@@ -17,7 +17,7 @@ import ContactCTA from '../components/ContactCTA.astro';
 		<div class="hero-block">
 			<img
 				class="portrait"
-				alt="Didik Tri Susanto"
+				alt="Looking out over the sea from a beach"
 				width="96"
 				height="96"
 				title="Photo of Didik Tri Susanto"
@@ -27,7 +27,7 @@ import ContactCTA from '../components/ContactCTA.astro';
 			<div class="hero-copy">
 				<Hero
 					title="Didik Tri Susanto"
-					tagline="Backend product engineer. I build systems people can rely on, from design to production to maintenance."
+					tagline="Backend product engineer with 13 years building systems people can rely on, from design to production to maintenance."
 					inkStroke
 				/>
 				<div class="hero-actions">
@@ -39,9 +39,9 @@ import ContactCTA from '../components/ContactCTA.astro';
 			</div>
 		</div>
 
-		<Skills />
-
 		<Selected />
+
+		<Skills />
 
 		<LatestPosts />
 
@@ -62,7 +62,7 @@ import ContactCTA from '../components/ContactCTA.astro';
 	.hero-block {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		gap: 1.25rem;
 		position: relative;
 	}
@@ -117,6 +117,10 @@ import ContactCTA from '../components/ContactCTA.astro';
 		.page {
 			padding-block: 1.5rem 5rem;
 			gap: 4.5rem;
+		}
+
+		.hero-block {
+			align-items: flex-start;
 		}
 
 		.hero-actions :global(a) {

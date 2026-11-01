@@ -93,7 +93,8 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 			const posts = data.posts ?? [];
 
 			if (posts.length === 0) {
-				status.hidden = true;
+				status.textContent = 'No recent posts yet.';
+				status.hidden = false;
 				list.hidden = true;
 				return;
 			}
@@ -102,7 +103,8 @@ const blogUrl = 'https://blog.didiktrisusanto.dev/';
 			status.hidden = true;
 			list.hidden = false;
 		} catch {
-			status.hidden = true;
+			status.textContent = "Posts didn’t load.";
+			status.hidden = false;
 			list.hidden = true;
 		}
 	}

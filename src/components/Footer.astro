@@ -1,21 +1,18 @@
 ---
-import Icon from './Icon.astro';
 const currentYear = new Date().getFullYear();
 ---
 
 <footer>
 	<div class="group">
-		<p>
-			Designed & Developed in Malang, Indonesia with <a href="https://astro.build/">Astro</a>
-			<Icon icon="rocket-launch" size="1.2em" />
-		</p>
+		<p>Based in Malang, Indonesia</p>
 		<p>&copy; {currentYear} Didik Tri Susanto</p>
 	</div>
 	<p class="socials">
-		<a href="https://blog.didiktrisusanto.dev"> Blog</a>
-		<a href="https://github.com/didikz"> GitHub</a>
-		<a href="https://twitter.com/didikz"> Twitter</a>
-		<a href="https://www.linkedin.com/in/didik-tri-susanto-16029443/"> Linkedin</a>
+		<a href="https://blog.didiktrisusanto.dev">Blog</a>
+		<a href="https://github.com/didikz">GitHub</a>
+		<a href="https://x.com/didikz">Twitter</a>
+		<a href="https://www.linkedin.com/in/didik-tri-susanto-16029443/">LinkedIn</a>
+		<a href="https://speakerdeck.com/didikz/">Speaker Deck</a>
 	</p>
 </footer>
 <style>
@@ -35,6 +32,9 @@ const currentYear = new Date().getFullYear();
 		text-decoration: 1px solid underline transparent;
 		text-underline-offset: 0.25em;
 		transition: text-decoration-color var(--theme-transition);
+		min-height: 2.75rem;
+		display: inline-flex;
+		align-items: center;
 	}
 
 	footer a:hover,
@@ -51,7 +51,7 @@ const currentYear = new Date().getFullYear();
 	.socials {
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
+		gap: 0.75rem 1rem;
 		flex-wrap: wrap;
 	}
 
@@ -70,6 +70,10 @@ const currentYear = new Date().getFullYear();
 
 		.socials {
 			justify-content: flex-end;
+		}
+
+		footer a {
+			min-height: 0;
 		}
 	}
 </style>

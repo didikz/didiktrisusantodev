@@ -1,17 +1,14 @@
 ---
-import CallToAction from './CallToAction.astro';
-import Icon from './Icon.astro';
 ---
 
 <aside class="contact">
 	<div class="copy">
 		<p class="label">Get in touch</p>
-		<h2>Available for new projects — let's talk</h2>
+		<h2>
+			Hiring a backend product engineer?
+			<a href="mailto:didiktrisusanto@gmail.com">Email me</a>
+		</h2>
 	</div>
-	<CallToAction href="mailto:didiktrisusanto@gmail.com">
-		Email me
-		<Icon icon="paper-plane-tilt" size="1em" />
-	</CallToAction>
 </aside>
 
 <style>
@@ -38,9 +35,24 @@ import Icon from './Icon.astro';
 	}
 
 	h2 {
+		margin: 0;
 		font-size: var(--text-md);
 		font-weight: 600;
 		color: var(--gray-0);
+		max-width: 28ch;
+	}
+
+	h2 a {
+		color: var(--accent-regular);
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, var(--accent-regular) 35%, transparent);
+		text-underline-offset: 0.18em;
+		transition: text-decoration-color var(--theme-transition);
+	}
+
+	h2 a:hover,
+	h2 a:focus-visible {
+		text-decoration-color: currentColor;
 	}
 
 	.copy {
@@ -50,15 +62,13 @@ import Icon from './Icon.astro';
 
 	@media (min-width: 50em) {
 		.contact {
-			flex-direction: row;
-			align-items: center;
-			justify-content: space-between;
 			padding: 4rem 0 1rem;
 			gap: 1.5rem;
 		}
 
 		h2 {
 			font-size: var(--text-lg);
+			max-width: 34ch;
 		}
 	}
 </style>

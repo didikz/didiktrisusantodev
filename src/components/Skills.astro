@@ -5,45 +5,68 @@ type Skill = {
 	mono?: boolean;
 };
 
-const skills: Skill[] = [
-	{ label: 'PHP', slug: 'php' },
-	{ label: 'Go', slug: 'go' },
-	{ label: 'TypeScript', slug: 'typescript' },
-	{ label: 'JavaScript', slug: 'javascript', mono: true },
-	{ label: 'Laravel', slug: 'laravel' },
-	{ label: 'Symfony', slug: 'symfony', mono: true },
-	{ label: 'Yii2', slug: 'yii' },
-	{ label: 'MySQL', slug: 'mysql' },
-	{ label: 'MongoDB', slug: 'mongodb' },
-	{ label: 'Redis', slug: 'redis' },
-	{ label: 'Docker', slug: 'docker' },
-	{ label: 'AWS', slug: 'amazonwebservices', mono: true },
-	{ label: 'GCP', slug: 'googlecloud' },
-	{ label: 'RabbitMQ', slug: 'rabbitmq' },
-	{ label: 'Datadog', slug: 'datadog' },
-	{ label: 'CI/CD', slug: 'gitlab' },
+type SkillGroup = {
+	label: string;
+	skills: Skill[];
+};
+
+const groups: SkillGroup[] = [
+	{
+		label: 'Languages',
+		skills: [
+			{ label: 'PHP', slug: 'php' },
+			{ label: 'Go', slug: 'go' },
+			{ label: 'TypeScript', slug: 'typescript' },
+			{ label: 'JavaScript', slug: 'javascript', mono: true },
+		],
+	},
+	{
+		label: 'Backend',
+		skills: [
+			{ label: 'Laravel', slug: 'laravel' },
+			{ label: 'MySQL', slug: 'mysql' },
+			{ label: 'Redis', slug: 'redis' },
+			{ label: 'MongoDB', slug: 'mongodb' },
+		],
+	},
+	{
+		label: 'Platform',
+		skills: [
+			{ label: 'Docker', slug: 'docker' },
+			{ label: 'AWS', slug: 'amazonwebservices', mono: true },
+			{ label: 'GCP', slug: 'googlecloud' },
+			{ label: 'Datadog', slug: 'datadog' },
+		],
+	},
 ];
 ---
 
 <section class="stack-section" aria-labelledby="stack-heading">
 	<p class="label" id="stack-heading">Stack</p>
-	<ul class="chips">
+	<div class="groups">
 		{
-			skills.map((skill, i) => (
-				<li class="chip" style={`--i: ${i}`}>
-					<img
-						class:list={['logo', { mono: skill.mono }]}
-						src={`/assets/stack/${skill.slug}.svg`}
-						alt=""
-						width="16"
-						height="16"
-						loading="lazy"
-					/>
-					<span>{skill.label}</span>
-				</li>
+			groups.map((group, gi) => (
+				<div class="group">
+					<p class="group-label">{group.label}</p>
+					<ul class="chips">
+						{group.skills.map((skill, i) => (
+							<li class="chip" style={`--i: ${gi * 4 + i}`}>
+								<img
+									class:list={['logo', { mono: skill.mono }]}
+									src={`/assets/stack/${skill.slug}.svg`}
+									alt=""
+									width="16"
+									height="16"
+									loading="lazy"
+								/>
+								<span>{skill.label}</span>
+							</li>
+						))}
+					</ul>
+				</div>
 			))
 		}
-	</ul>
+	</div>
 </section>
 
 <style>
@@ -59,6 +82,24 @@ const skills: Skill[] = [
 		font-weight: 500;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
+		color: var(--gray-300);
+	}
+
+	.groups {
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+	}
+
+	.group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.55rem;
+	}
+
+	.group-label {
+		margin: 0;
+		font-size: var(--text-sm);
 		color: var(--gray-300);
 	}
 
