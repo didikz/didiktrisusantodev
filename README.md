@@ -4,7 +4,7 @@ Personal portfolio of Didik Tri Susanto — backend-focused product engineer. Pl
 
 ## Requirements
 
-- Node.js `>=22.12.0` (see `.nvmrc`)
+- Node.js `>=22.23.4` (see `.nvmrc`)
 - npm 9+
 
 ## Setup
@@ -32,7 +32,7 @@ Production and PR previews use **Cloudflare Pages Git integration** (no GitHub A
 
 - **Production:** pushes to `main` deploy to [didiktrisusanto.dev](https://didiktrisusanto.dev).
 - **PR previews:** each pull request gets a unique `*.pages.dev` URL (hash + branch alias). Cloudflare comments the link on the PR. Previews are public and send `X-Robots-Tag: noindex`.
-- **Build settings** (Pages dashboard): build command `npm run build`, output directory `dist`, Node `>=22.12.0`.
+- **Build settings** (Pages dashboard): build command `npm run build`, output directory `dist`, Node `>=22.23.4` (from `.nvmrc`).
 
 Confirm previews are enabled under the Pages project → Settings → Builds & deployments. Optional: lock previews behind Cloudflare Access in Settings → General.
 

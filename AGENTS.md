@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Portfolio. Plain Astro 7. No React/Vue/Svelte. No tests. No lint/formatter. Vanilla CSS + `.astro`. Tab indent. Node `>=22.12.0` (see `.nvmrc`).
+Portfolio. Plain Astro 7. No React/Vue/Svelte. No tests. No lint/formatter. Vanilla CSS + `.astro`. Tab indent. Node `>=22.23.4` (see `.nvmrc`).
 
 ## Commands
 
