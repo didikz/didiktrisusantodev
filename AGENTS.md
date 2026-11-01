@@ -14,6 +14,12 @@ Portfolio. Plain Astro 7. No React/Vue/Svelte. No tests. No lint/formatter. Vani
 - Schema still in `src/content.config.ts`, but stub markdown and `/work` routes are removed (ponytail cleanup).
 - To revive: add markdown under `src/content/work/`, restore `src/pages/work.astro` + `src/pages/work/[...slug].astro`, and stock/preview imagery.
 
+## Deploy
+
+- Cloudflare Pages Git: `main` → production; PRs → preview `*.pages.dev` URLs (dashboard comments on the PR).
+- Build: `npm run build` → `dist/`. No Actions workflow for deploy.
+- Preview URLs are public + `noindex` by default; Access policy is optional in the Pages dashboard.
+
 ## Gotchas
 
 - Stack logos: `public/assets/stack/` (local SVGs). No CDN.
