@@ -4,7 +4,7 @@ Personal portfolio of Didik Tri Susanto — backend-focused product engineer. Pl
 
 ## Requirements
 
-- Node.js `>=22.12.0` (see `.nvmrc`)
+- Node.js `>=24.22.1` (see `.nvmrc`)
 - npm 9+
 
 ## Setup
